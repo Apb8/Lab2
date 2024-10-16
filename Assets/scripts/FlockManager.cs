@@ -43,12 +43,16 @@ public class FlockManager : MonoBehaviour
     [Range(1.0f, 5.0f)]
     public float rotationSpeed;
 
+    //Lideres
+    public List<GameObject> leaders;
+
     // Start is called before the first frame update
     // This method initializes the fish by spawning them within the defined limits
     void Start()
     {
         // Initialize the array to hold all the fish
         allFish = new GameObject[numFish];
+        leaders = new List<GameObject>();
 
         // Loop to create and place each fish randomly within the swim limits
         for (int i = 0; i < numFish; i++)
@@ -61,6 +65,7 @@ public class FlockManager : MonoBehaviour
             
             // Instantiate the fish prefab at the random position with no rotation
             allFish[i] = Instantiate(fishPrefab, pos, Quaternion.identity);
+            
         }
 
         // Set the static reference to this instance of FlockManager
@@ -68,6 +73,13 @@ public class FlockManager : MonoBehaviour
         
         // Initialize the goal position as the FlockManager's position
         goalPos = this.transform.position;
+
+        // Cogemos 3 peces random como lideres
+        for (int i = 0; i < 3; i++)
+        {
+            int randomIndex = Random.Range(0, numFish);
+            leaders.Add(allFish[randomIndex]);
+        }
     }
 
     // Update is called once per frame

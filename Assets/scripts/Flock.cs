@@ -22,6 +22,15 @@ public class Flock : MonoBehaviour
     // Handles fish movement, boundary checks, and rule application (cohesion, separation, alignment)
     void Update()
     {
+        if (FlockManager.FM.leaders.Contains(this.gameObject))
+        {
+            LeaderBehavior();
+        }
+        else
+        {            
+            FollowerBehavior();
+        }
+
         // Define the swimming area boundary (based on the swimLimits set in FlockManager)
         Bounds b = new Bounds(FlockManager.FM.transform.position, FlockManager.FM.swimLimits * 2);
 
@@ -137,6 +146,68 @@ public class Flock : MonoBehaviour
                     Quaternion.LookRotation(direction), 
                     FlockManager.FM.rotationSpeed * Time.deltaTime);
             }
+        }
+    }
+
+    void LeaderBehavior()
+    {        
+        Bounds b = new Bounds(FlockManager.FM.transform.position, FlockManager.FM.swimLimits * 2);
+
+        if (!b.Contains(transform.position))
+        {
+            turning = true;
+        }
+        else
+        {
+            turning = false;
+        }
+
+        if (turning)
+        {
+            Vector3 direction = FlockManager.FM.transform.position - transform.position;
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                Quaternion.LookRotation(direction),
+                FlockManager.FM.rotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            if (Random.Range(0, 100) < 10)
+            {
+                speed = Random.Range(FlockManager.FM.minSpeed, FlockManager.FM.maxSpeed);
+            }
+
+            this.transform.Translate(0, 0, speed * Time.deltaTime);
+        }
+    }
+
+    void FollowerBehavior()
+    {
+        // Los seguidores intentan seguir a los líderes, calculando una dirección hacia el líder más cercano
+        GameObject closestLeader = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (GameObject leader in FlockManager.FM.leaders)
+        {
+            float distance = Vector3.Distance(leader.transform.position, this.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestLeader = leader;
+            }
+        }
+
+        // Si encuentra un líder cercano, gira hacia él
+        if (closestLeader != null)
+        {
+            Vector3 direction = closestLeader.transform.position - this.transform.position;
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                Quaternion.LookRotation(direction),
+                FlockManager.FM.rotationSpeed * Time.deltaTime);
+
+            // Mueve el seguidor en esa dirección
+            this.transform.Translate(0, 0, speed * Time.deltaTime);
         }
     }
 }
