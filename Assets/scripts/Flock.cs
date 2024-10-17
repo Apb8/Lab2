@@ -183,7 +183,6 @@ public class Flock : MonoBehaviour
 
     void FollowerBehavior()
     {
-        // Los seguidores intentan seguir a los líderes, calculando una dirección hacia el líder más cercano
         GameObject closestLeader = null;
         float closestDistance = Mathf.Infinity;
 
@@ -197,6 +196,7 @@ public class Flock : MonoBehaviour
             }
         }
 
+        ApplyFlockingRules();
         // Si encuentra un líder cercano, gira hacia él
         if (closestLeader != null)
         {

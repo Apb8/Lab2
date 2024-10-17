@@ -167,7 +167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fishPrefab: {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
-  numFish: 20
+  LeaderfishPrefab: {fileID: 2048193787}
+  numFish: 53
   allFish:
   - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
   - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
@@ -199,11 +200,31 @@ MonoBehaviour:
   - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
   - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
   - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
-  swimLimits: {x: 5, y: 5, z: 5}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  swimLimits: {x: 10, y: 10, z: 10}
   goalPos: {x: 0, y: 0, z: 0}
-  minSpeed: 1
-  maxSpeed: 3
-  neighbourDistance: 7
+  minSpeed: 1.5
+  maxSpeed: 2
+  neighbourDistance: 10
   rotationSpeed: 3.51
   leaders:
   - {fileID: 1733855665772604, guid: b0489fdb6d64a4a4ba8e194e561d60cd, type: 3}
@@ -627,6 +648,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0489fdb6d64a4a4ba8e194e561d60cd, type: 3}
+--- !u!1 &2048193787 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1733855665772604, guid: b0489fdb6d64a4a4ba8e194e561d60cd, type: 3}
+  m_PrefabInstance: {fileID: 1647246619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -11,7 +11,8 @@ public class FlockManager : MonoBehaviour
     public static FlockManager FM; 
     
     // The fish prefab to instantiate for each fish in the flock
-    public GameObject fishPrefab; 
+    public GameObject fishPrefab;
+    public GameObject LeaderfishPrefab;
     
     // Number of fish in the flock
     public int numFish = 20; 
@@ -68,17 +69,38 @@ public class FlockManager : MonoBehaviour
             
         }
 
+        // Instancia los lideres
+        if (LeaderfishPrefab != null)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                Vector3 leaderPos = this.transform.position + new Vector3(
+                    Random.Range(-swimLimits.x, swimLimits.x),
+                    Random.Range(-swimLimits.y, swimLimits.y),
+                    Random.Range(-swimLimits.z, swimLimits.z));
+
+                GameObject leaderFish = Instantiate(LeaderfishPrefab, leaderPos, Quaternion.identity);
+                leaders.Add(leaderFish);
+            }
+        }
+
         // Set the static reference to this instance of FlockManager
         FM = this;
         
         // Initialize the goal position as the FlockManager's position
         goalPos = this.transform.position;
 
-        // Cogemos 3 peces random como lideres
-        for (int i = 0; i < 3; i++)
+        // If no leaders have been assigned in the Inspector, choose random leaders
+        if (leaders == null || leaders.Count == 0)
         {
-            int randomIndex = Random.Range(0, numFish);
-            leaders.Add(allFish[randomIndex]);
+            leaders = new List<GameObject>();
+
+            // Cogemos 3 peces random como lideres
+            for (int i = 0; i < 3; i++)
+            {
+                int randomIndex = Random.Range(0, numFish);
+                leaders.Add(allFish[randomIndex]);
+            }
         }
     }
 
